@@ -873,31 +873,28 @@ EXEC proc_display_guest_summary(9999);
 
 /*
     Manual negative trigger test.
-    Uncomment during demo if you want to show Oracle rejecting a past date.
 */
 
--- INSERT INTO programmes
--- VALUES (
---     seq_programmes.NEXTVAL,
---     'PAST PROGRAMME',
---     100,
---     TO_DATE('01-JAN-2020', 'DD-MON-YYYY'),
---     2000,
---     3000,
---     programme_programme_activity_table_type('TEST ACTIVITY')
--- );
+INSERT INTO programmes
+VALUES (
+    seq_programmes.NEXTVAL,
+    'PAST PROGRAMME',
+    100,
+    TO_DATE('01-JAN-2020', 'DD-MON-YYYY'),
+    2000,
+    3000,
+    programme_programme_activity_table_type('TEST ACTIVITY')
+);
 
 
 /* ============================================================
    SECTION 14: USER ACCESS LEVEL TESTING EXAMPLE
-   This is included as commented DCL because most student logins do not
-   have privilege to CREATE USER or GRANT system privileges.
    ============================================================ */
 
--- CREATE USER haven_viewer IDENTIFIED BY viewerpass;
--- GRANT CREATE SESSION TO haven_viewer;
--- GRANT SELECT ON guests TO haven_viewer;
--- GRANT SELECT ON programmes TO haven_viewer;
+CREATE USER haven_viewer IDENTIFIED BY viewerpass;
+GRANT CREATE SESSION TO haven_viewer;
+GRANT SELECT ON guests TO haven_viewer;
+GRANT SELECT ON programmes TO haven_viewer;
 
 
 /* ============================================================
@@ -936,46 +933,45 @@ FROM reviews;
 
 
 /* ============================================================
-   SECTION 16: DROP COMMANDS FOR END OF VIDEO DEMO
-   Uncomment and run at the end if required.
+   SECTION 16: DROP COMMANDS FOR CLEANUP
    ============================================================ */
 
--- DROP TRIGGER trig_reviews_uppercase;
--- DROP TRIGGER trig_programmes_future_date;
--- DROP TRIGGER trig_guests_uppercase;
+DROP TRIGGER trig_reviews_uppercase;
+DROP TRIGGER trig_programmes_future_date;
+DROP TRIGGER trig_guests_uppercase;
 
--- DROP PROCEDURE proc_display_guest_summary;
--- DROP PROCEDURE proc_display_reviews;
--- DROP PROCEDURE proc_update_programme_cost;
--- DROP PROCEDURE proc_insert_review;
--- DROP PROCEDURE proc_insert_guest;
+DROP PROCEDURE proc_display_guest_summary;
+DROP PROCEDURE proc_display_reviews;
+DROP PROCEDURE proc_update_programme_cost;
+DROP PROCEDURE proc_insert_review;
+DROP PROCEDURE proc_insert_guest;
 
--- DROP FUNCTION func_get_retreat_programme_count;
--- DROP FUNCTION func_get_rating_grade;
--- DROP FUNCTION func_get_programme_income;
--- DROP FUNCTION func_get_average_rating;
--- DROP FUNCTION func_get_review_count;
+DROP FUNCTION func_get_retreat_programme_count;
+DROP FUNCTION func_get_rating_grade;
+DROP FUNCTION func_get_programme_income;
+DROP FUNCTION func_get_average_rating;
+DROP FUNCTION func_get_review_count;
 
--- DROP TABLE reviews PURGE;
--- DROP TABLE programmes PURGE;
--- DROP TABLE accommodations PURGE;
--- DROP TABLE retreats PURGE;
--- DROP TABLE guests PURGE;
--- DROP TABLE guides PURGE;
+DROP TABLE reviews PURGE;
+DROP TABLE programmes PURGE;
+DROP TABLE accommodations PURGE;
+DROP TABLE retreats PURGE;
+DROP TABLE guests PURGE;
+DROP TABLE guides PURGE;
 
--- DROP SEQUENCE seq_reviews;
--- DROP SEQUENCE seq_programmes;
--- DROP SEQUENCE seq_accommodations;
--- DROP SEQUENCE seq_retreats;
--- DROP SEQUENCE seq_guests;
--- DROP SEQUENCE seq_guides;
+DROP SEQUENCE seq_reviews;
+DROP SEQUENCE seq_programmes;
+DROP SEQUENCE seq_accommodations;
+DROP SEQUENCE seq_retreats;
+DROP SEQUENCE seq_guests;
+DROP SEQUENCE seq_guides;
 
--- DROP TYPE programme_activity_table_type;
--- DROP TYPE retreat_practice_varray_type;
--- DROP TYPE guide_type;
--- DROP TYPE address_type;
+DROP TYPE programme_activity_table_type;
+DROP TYPE retreat_practice_varray_type;
+DROP TYPE guide_type;
+DROP TYPE address_type;
 
--- PURGE RECYCLEBIN;
+PURGE RECYCLEBIN;
 
--- SELECT object_name, object_type
--- FROM user_objects;
+SELECT object_name, object_type
+FROM user_objects;
